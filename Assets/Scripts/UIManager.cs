@@ -9,6 +9,7 @@ namespace LinePaint
         [SerializeField] private Text totalDiamonds, diamondsEarned, levelText;
         [SerializeField] private GameObject mainMenu, levelCompleteMenu, extraBtnHolder, sountBtnOff;
         [SerializeField] private Button settingsBtn, nextButton, soundBtn, retryBtn;
+        [SerializeField] private AudioSource themeSource;
 
         public Text LevelText { get => levelText; }
         public Text TotalDiamonds { get => totalDiamonds; }
@@ -40,6 +41,14 @@ namespace LinePaint
                     PlayerPrefs.SetInt("SoundOn", PlayerPrefs.GetInt("SoundOn", 1) == 0 ? 1 : 0);
                     sountBtnOff.SetActive(PlayerPrefs.GetInt("SoundOn", 1) == 0 ? true : false);
                     AudioListener.volume = PlayerPrefs.GetInt("SoundOn", 1);
+                    if (themeSource.volume == 0)
+                    {
+                        themeSource.volume = 1;
+                    }
+                    else
+                    {
+                        themeSource.volume = 0;
+                    }
                     break;
             }
         }
